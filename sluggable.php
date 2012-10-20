@@ -9,7 +9,7 @@
  * @package CakePHP_Sluggable
  * @author Aaron Pollock <aaron.pollock@gmail.com>
  * @copyright Copyright (c) 2011-12, Aaron Pollock
- * @license http://opensource.org/licenses/gpl-3.0.html GNU Public Licence v3.0
+ * @license http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported
  */
 
 /**
