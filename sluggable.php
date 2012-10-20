@@ -5,10 +5,10 @@
  *
  * Makes generation of unique URL slugs for permalinks very simple in CakePHP
  * 
- * @version 1.0
+ * @version 1.1
  * @package CakePHP_Sluggable
  * @author Aaron Pollock <aaron.pollock@gmail.com>
- * @copyright Copyright (c) 2011, Aaron Pollock
+ * @copyright Copyright (c) 2011-12, Aaron Pollock
  * @license http://opensource.org/licenses/gpl-3.0.html GNU Public Licence v3.0
  */
 
@@ -49,7 +49,8 @@ class SluggableBehavior extends ModelBehavior
 		if (!isset($this->settings[$model->alias])) {
 			$this->settings[$model->alias] = array(
 				'slug_field'		=>	'slug',
-				'slug_max_length'	=>	100
+				'slug_max_length'	=>	100,
+				'separator'			=> '_'
 			);
 		}
 		
@@ -145,7 +146,7 @@ class SluggableBehavior extends ModelBehavior
 		
 		if (isset($slug_source)) {
 			
-			$slug = strtolower(Inflector::slug($slug_source));
+			$slug = strtolower(Inflector::slug($slug_source, $this->settings[$model->alias]['separator']));
 			if (strlen($slug) > $this->settings[$model->alias]['slug_max_length']) {
 				$slug = substr($slug, 0, $this->settings[$model->alias]['slug_max_length']);
 			}

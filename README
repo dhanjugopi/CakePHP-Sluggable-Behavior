@@ -13,6 +13,8 @@ Quick overview:
 
 * Specify a field into which the slug should be stored when new records are created (e.g. url_slug : 'the_great_the_good')
 
+* Specify a slug word separator (defaults to using underscores)
+
 * Automatically handles potential duplicates, and adds numerical suffixes accordingly
 
 * Keeps slugs constant even when source field changes (for true permalinks, unlike the dynamic examples out there)
