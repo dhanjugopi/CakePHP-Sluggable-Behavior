@@ -49,7 +49,6 @@ class SluggableBehavior extends ModelBehavior
 		if (!isset($this->settings[$model->alias])) {
 			$this->settings[$model->alias] = array(
 				'slug_field'		=> 'slug',
-				'slug_max_length'	=> 100,
 				'separator'			=> '_',
 				'title_field'		=> $model->displayField,
 			);
@@ -142,8 +141,9 @@ class SluggableBehavior extends ModelBehavior
 		if (isset($slug_source)) {
 
 			$slug = strtolower(Inflector::slug($slug_source, $this->settings[$model->alias]['separator']));
-			if (strlen($slug) > $this->settings[$model->alias]['slug_max_length']) {
-				$slug = substr($slug, 0, $this->settings[$model->alias]['slug_max_length']);
+			$max_length = $model->_schema[$this->settings[$model->alias]['slug_field']]['length'];
+			if (strlen($slug) > $max_length) {
+				$slug = substr($slug, 0, $max_length);
 			}
 
 			$slug = $this->_deduplicate_slug($model, $slug);
@@ -183,7 +183,7 @@ class SluggableBehavior extends ModelBehavior
 			$new_slug_suffix = (string)$this->duplicate_suffix;
 			$new_suffix_length = strlen($new_slug_suffix);
 			$slug_length = strlen($slug);
-			$max_length = $this->settings[$model->alias]['slug_max_length'];
+			$max_length = $model->_schema[$this->settings[$model->alias]['slug_field']]['length'];
 
 			if ($previous_suffix > 0 || $new_suffix_length + $slug_length > $max_length) {
 				$replace_at = -1 * $new_suffix_length;
