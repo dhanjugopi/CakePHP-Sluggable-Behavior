@@ -48,9 +48,10 @@ class SluggableBehavior extends ModelBehavior
 
 		if (!isset($this->settings[$model->alias])) {
 			$this->settings[$model->alias] = array(
-				'slug_field'		=>	'slug',
-				'slug_max_length'	=>	100,
-				'separator'			=> '_'
+				'slug_field'		=> 'slug',
+				'slug_max_length'	=> 100,
+				'separator'			=> '_',
+				'title_field'		=> $model->displayField,
 			);
 		}
 
@@ -58,12 +59,6 @@ class SluggableBehavior extends ModelBehavior
 			$this->settings[$model->alias],
 			(array)$settings
 		);
-
-		// check for a title field (there is no default)
-		if (!isset($this->settings[$model->alias]['title_field']) || '' === $this->settings[$model->alias]['title_field']) {
-			throw new Exception('Must specify a source (title) field for SluggableBehavior');
-		}
-
 	}
 
 	/**
