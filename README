@@ -11,7 +11,7 @@ Quick overview:
 
 * Specify a database field from which the slug should be generated (e.g. headline : 'The Great & the Good')
 
-* Specify a field into which the slug should be stored when new records are created (e.g. url_slug : 'the_great_the_good')
+* Specify a field into which the slug should be stored when new records are created (e.g. url_slug : 'the_great_the_good'). Default is the CakePHP model's displayField
 
 * Specify a slug word separator (defaults to using underscores)
 
