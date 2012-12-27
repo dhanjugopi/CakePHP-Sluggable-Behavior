@@ -186,7 +186,7 @@ class SluggableBehavior extends ModelBehavior
 			$max_length = $model->_schema[$this->settings[$model->alias]['slug_field']]['length'];
 
 			if ($previous_suffix > 0 || $new_suffix_length + $slug_length > $max_length) {
-				$replace_at = -1 * $new_suffix_length;
+				$replace_at = -1 * strlen($previous_suffix);
 			} else {
 				$replace_at = $slug_length;
 			}
